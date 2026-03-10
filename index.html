@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens do Dia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body class="inicio">
+    <div id="fundo"></div>
+    
+    <!-- Espaço Adsense Superior -->
+    <div class="ads-container ads-top">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <div id="home" class="tela">
+        <header id="cabecalho">
+            <h1>Mensagens do Dia</h1>
+            
+            <div id="info-tempo">
+                <div id="relogio">00:00</div>
+                <div id="data-completa">Carregando data...</div>
+                <button id="btn-notificacao" class="btn-acao-mini" title="Ativar Notificações" style="display:none; margin: 10px auto;">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+            </div>
+
+            <div id="dia-especial" style="display:none;">
+                <span class="badge-especial">🌟 <span id="texto-dia-especial">Hoje é um dia especial!</span></span>
+            </div>
+
+            <div id="mensagens-rapidas">
+                <p id="msg-dia-texto"></p>
+                <div class="acoes-rapidas">
+                    <button id="btn-copiar-rapido" class="btn-acao-mini btn-copy"></button>
+                    <button id="btn-zap-rapido" class="btn-acao-mini btn-whatsapp"></button>
+                    <button id="btn-share-rapido" class="btn-acao-mini btn-share"></button>
+                </div>
+            </div>
+        </header>
+
+        <div id="menu">
+            <p class="instrucao">Ou escolha um período para ver mais:</p>
+            <div class="botoes-menu">
+                <button onclick="carregarPeriodo('bomdia')" class="btn-periodo">☀️ Bom Dia</button>
+                <button onclick="carregarPeriodo('boatarde')" class="btn-periodo">🌇 Boa Tarde</button>
+                <button onclick="carregarPeriodo('boanoite')" class="btn-periodo">🌙 Boa Noite</button>
+            </div>
+        </div>
+    </div>
+
+    <main id="conteudo" class="tela" style="display:none;">
+        <div class="navegacao">
+            <button onclick="voltarMenu()" class="btn-nav">⬅️ Mudar Período</button>
+            <button onclick="atualizarMensagens()" class="btn-nav">🔄 Gerar Novas</button>
+        </div>
+        <h2 id="tituloPeriodo"></h2>
+        <div id="listaMensagens"></div>
+        
+        <!-- Espaço Adsense Inferior -->
+        <div class="ads-container ads-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

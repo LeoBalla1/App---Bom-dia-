@@ -1,0 +1,323 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #2c3e50;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Espaços Adsense */
+.ads-container {
+    width: 100%;
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1.2s ease-in-out;
+}
+
+#fundo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: -1;
+}
+
+.tela {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 40px;
+    background: transparent;
+}
+
+header {
+    padding: 30px 10px 15px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#info-tempo {
+    margin: 10px 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+#relogio {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+#data-completa {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.9;
+    text-transform: capitalize;
+}
+
+#dia-especial {
+    margin: 15px auto;
+    animation: bounce 2s infinite;
+}
+
+.badge-especial {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    display: inline-block;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+#mensagens-rapidas {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 10px auto;
+    width: 92%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+#msg-dia-texto {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.acoes-rapidas {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.btn-acao-mini {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#menu {
+    margin-top: auto;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.instrucao {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.botoes-menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-periodo {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    padding: 12px 5px;
+    border-radius: 15px;
+    flex: 1;
+    max-width: 110px;
+    cursor: pointer;
+}
+
+#listaMensagens {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.mensagem-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    animation: fadeInUp 0.5s ease-out forwards;
+    text-align: left;
+}
+
+.mensagem-texto {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-acao, .btn-acao-mini {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-share, .btn-copy {
+    background-color: #F0F2F5;
+    color: #444;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.skeleton {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    height: 120px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.btn-acao:active, .btn-acao-mini:active {
+    transform: scale(0.92);
+}
+
+.btn-nav {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.navegacao {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+h2#tituloPeriodo {
+    margin: 10px 0 20px;
+    font-size: 1.5rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
