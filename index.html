@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensagens do Dia</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2c3e50">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body class="inicio">
     <div id="fundo"></div>
@@ -39,7 +39,13 @@
                 <span class="badge-especial">🌟 <span id="texto-dia-especial">Hoje é um dia especial!</span></span>
             </div>
 
-            <div id="mensagens-rapidas">
+            <div id="mensagens-rapidas" class="card-home">
+                <div class="card-header">
+                    <span>💡 Mensagem de Agora</span>
+                    <button onclick="trocarMensagemRapida()" class="btn-refresh" title="Nova Mensagem">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                </div>
                 <p id="msg-dia-texto"></p>
                 <div class="acoes-rapidas">
                     <button id="btn-copiar-rapido" class="btn-acao-mini btn-copy"></button>
@@ -56,13 +62,16 @@
                 <button onclick="carregarPeriodo('boatarde')" class="btn-periodo">🌇 Boa Tarde</button>
                 <button onclick="carregarPeriodo('boanoite')" class="btn-periodo">🌙 Boa Noite</button>
             </div>
+            <button onclick="verFavoritos()" class="btn-favoritos-home">
+                <i class="fa-solid fa-heart"></i> Meus Favoritos
+            </button>
         </div>
     </div>
 
     <main id="conteudo" class="tela" style="display:none;">
         <div class="navegacao">
-            <button onclick="voltarMenu()" class="btn-nav">⬅️ Mudar Período</button>
-            <button onclick="atualizarMensagens()" class="btn-nav">🔄 Gerar Novas</button>
+            <button onclick="voltarMenu()" class="btn-nav">⬅️ Voltar</button>
+            <button id="btn-gerar-mais" onclick="atualizarMensagens()" class="btn-nav">🔄 Gerar Novas</button>
         </div>
         <h2 id="tituloPeriodo"></h2>
         <div id="listaMensagens"></div>
@@ -80,6 +89,9 @@
 
     <div id="toast" class="toast"></div>
 
-    <script src="script.js"></script>
+    <!-- Canvas escondido para gerar imagem de compartilhamento (Tarefa 11) -->
+    <canvas id="canvasShare" style="display:none;"></canvas>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
