@@ -299,6 +299,22 @@ function detectarPeriodoAutomatico() {
     configurarMensagemRapida(periodo);
 }
 
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
+let mensagensVistas = {
+    bomdia: new Set(),
+    boatarde: new Set(),
+    boanoite: new Set()
+};
+
 function atualizarMensagens() {
     if (!dados[periodoAtual]) return;
     
@@ -316,7 +332,21 @@ function atualizarMensagens() {
     setTimeout(() => {
         container.innerHTML = "";
         const lista = dados[periodoAtual];
-        const selecionadas = [...lista].sort(() => 0.5 - Math.random()).slice(0, 15);
+        
+        // Filtra mensagens que já foram vistas nesta sessão (se possível)
+        let disponiveis = lista.filter(m => !mensagensVistas[periodoAtual].has(m));
+        
+        // Se todas foram vistas, reseta o histórico do período
+        if (disponiveis.length < 15) {
+            mensagensVistas[periodoAtual].clear();
+            disponiveis = [...lista];
+        }
+
+        // Sorteia 15 mensagens únicas
+        const selecionadas = shuffle([...disponiveis]).slice(0, 15);
+
+        // Adiciona ao histórico de vistas
+        selecionadas.forEach(m => mensagensVistas[periodoAtual].add(m));
 
         selecionadas.forEach((msg, index) => {
             const card = criarCardMensagem(msg);
