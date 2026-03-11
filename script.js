@@ -1,23 +1,23 @@
 let dados = {
     bomdia: [
-        "Bom dia! Que seu dia seja repleto de luz e alegria.",
+        "Que seu dia seja repleto de luz e alegria.",
         "Comece o dia com um sorriso e tudo dará certo.",
         "Que a paz de Deus acompanhe cada passo seu hoje.",
         "Aproveite cada segundo deste novo dia que se inicia.",
-        "Bom dia! Que a felicidade te encontre e te siga por onde for."
+        "Que a felicidade te encontre e te siga por onde for."
     ],
     boatarde: [
-        "Boa tarde! Que sua tarde seja tranquila e muito produtiva.",
+        "Que sua tarde seja tranquila e muito produtiva.",
         "Que o restante do seu dia seja maravilhoso e iluminado.",
         "Falta pouco para o fim do dia, continue com foco e força!",
-        "Boa tarde! Que a beleza do entardecer renove suas energias.",
+        "Que a beleza do entardecer renove suas energias.",
         "Aproveite o sol da tarde e as boas vibrações que ele traz."
     ],
     boanoite: [
-        "Boa noite! Que sua noite seja de paz e sonhos maravilhosos.",
+        "Que sua noite seja de paz e sonhos maravilhosos.",
         "Descanse profundamente para renovar as forças para amanhã.",
         "Que as estrelas iluminem seu sono e tragam tranquilidade.",
-        "Boa noite! Que a serenidade tome conta do seu coração agora.",
+        "Que a serenidade tome conta do seu coração agora.",
         "Apague as luzes, relaxe e deixe os problemas para amanhã."
     ]
 };
@@ -167,10 +167,13 @@ function verificarDiaEspecial(data) {
 fetch("mensagens.json")
     .then(r => r.json())
     .then(json => {
-        // Mesclar mensagens fixas com as do JSON para ter mais variedade
-        dados.bomdia = [...new Set([...dados.bomdia, ...json.bomdia])];
-        dados.boatarde = [...new Set([...dados.boatarde, ...json.boatarde])];
-        dados.boanoite = [...new Set([...dados.boanoite, ...json.boanoite])];
+        // Mesclar mensagens fixas com as do JSON e REMOVER DUPLICATAS
+        dados.bomdia = Array.from(new Set([...dados.bomdia, ...json.bomdia]));
+        dados.boatarde = Array.from(new Set([...dados.boatarde, ...json.boatarde]));
+        dados.boanoite = Array.from(new Set([...dados.boanoite, ...json.boanoite]));
+        
+        console.log(`Pool carregado: ${dados.bomdia.length} bom dia, ${dados.boatarde.length} boa tarde, ${dados.boanoite.length} boa noite.`);
+        
         detectarPeriodoAutomatico();
     })
     .catch(err => {
@@ -201,15 +204,15 @@ function carregarPeriodo(periodo) {
     
     const fundo = document.getElementById("fundo");
     const keywords = {
-        bomdia: "sunrise,mountain",
-        boatarde: "sunset,beach",
-        boanoite: "night,stars"
+        bomdia: "sunrise,morning,nature",
+        boatarde: "sunset,afternoon,landscape",
+        boanoite: "night,stars,moon,calm"
     };
     
-    // Usando LoremFlickr para maior estabilidade que o Unsplash Source antigo
-    const imgUrl = `https://loremflickr.com/1920/1080/${keywords[periodo]}?lock=${Math.floor(Math.random() * 1000)}`;
+    // Unsplash Source para fotos profissionais de alta qualidade
+    // O timestamp no final (?sig=...) força uma imagem nova a cada clique
+    const imgUrl = `https://source.unsplash.com/featured/1920x1080/?${keywords[periodo]}&sig=${Math.random()}`;
     
-    // Atualiza apenas a imagem, o gradiente suave já está no CSS (#fundo::after)
     fundo.style.backgroundImage = `url('${imgUrl}')`;
 
     // Atualizar UI
@@ -281,11 +284,11 @@ function configurarMensagemRapida(periodo) {
     // Definir fundo inicial da home baseado no horário (cada vez uma imagem nova)
     const fundo = document.getElementById("fundo");
     const keywords = {
-        bomdia: "sunrise",
-        boatarde: "sunset",
-        boanoite: "night"
+        bomdia: "sunrise,nature",
+        boatarde: "sunset,landscape",
+        boanoite: "night,stars"
     };
-    const imgUrl = `https://loremflickr.com/1920/1080/${keywords[periodo]}?lock=${Math.floor(Math.random() * 1000)}`;
+    const imgUrl = `https://source.unsplash.com/featured/1920x1080/?${keywords[periodo]}&sig=${Math.random()}`;
     fundo.style.backgroundImage = `url('${imgUrl}')`;
 }
 
